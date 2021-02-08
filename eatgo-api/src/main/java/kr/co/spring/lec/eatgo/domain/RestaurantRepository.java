@@ -1,9 +1,16 @@
 package kr.co.spring.lec.eatgo.domain;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface RestaurantRepository {
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     List<Restaurant> findAll();
 
-    Restaurant findById(long id);
+    Optional<Restaurant> findById(long id);
+
+    Restaurant save(Restaurant restaurant);
 }

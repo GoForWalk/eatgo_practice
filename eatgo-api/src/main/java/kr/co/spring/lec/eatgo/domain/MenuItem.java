@@ -1,18 +1,33 @@
 package kr.co.spring.lec.eatgo.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.Accessors;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @NoArgsConstructor
-//@AllArgsConstructor
+@AllArgsConstructor
 @Getter
+@Setter
+@Entity
+@Builder
+@RequiredArgsConstructor
+@Accessors(chain = true)
 public class MenuItem {
 
-//    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    @NonNull
     private String name;
 
-    public MenuItem(String name) {
-        this.name = name;
-    }
+    private Long restaurantId;
+
+//    public MenuItem(String name) {
+//        this.name = name;
+//    }
 }

@@ -1,48 +1,48 @@
 package kr.co.spring.lec.eatgo.domain;
 
-import lombok.Getter;
+import com.sun.istack.NotNull;
+import lombok.*;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
 public class Restaurant {
 
-    private final String name;
-    private final String address;
-    private final Long id;
-    private List<MenuItem> menuItems = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public Restaurant(String name, String address, Long id) {
-        this.name = name;
-        this.address = address;
-        this.id = id;
-    }
+    @NotEmpty
+    private String name;
 
-    public String getName() {
-        return name;
-    }
+    @NotEmpty
+    private String address;
+//    private String regionName;
+//    private String CategoryName;
+//    private String tagNames;
+
+
+//    @OneToMany
+    @Transient
+    private List<MenuItem> menuItems;
 
     public String  getInformation() {
         return name + " in " + address;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public Long getid() {
-        return id;
-    }
-
-    public void addMenuItem(MenuItem menuItem){
-        menuItems.add(menuItem);
-    }
-
     public void setMenuItems(List<MenuItem> menuItems){
-        for(MenuItem menuItem : menuItems){
-            addMenuItem(menuItem);
+        if (menuItems == null){
+            menuItems = new ArrayList<>();
         }
+        this.menuItems = new ArrayList<>(menuItems);
     }
 
 }
