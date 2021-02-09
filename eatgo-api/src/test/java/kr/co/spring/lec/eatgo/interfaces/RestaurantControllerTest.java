@@ -78,8 +78,8 @@ public class RestaurantControllerTest {
                 .id(2020L).name("Cyber Food").address("Seoul")
                 .build();
 
-        restaurant1.setMenuItems(Arrays.asList(new MenuItem("Kimchi")));
-        restaurant2.setMenuItems(Arrays.asList(new MenuItem("Kimchi")));
+        restaurant1.setMenuItems(Arrays.asList(MenuItem.builder().name("Kimchi").build()));
+        restaurant2.setMenuItems(Arrays.asList(MenuItem.builder().name("Kimchi").build()));
 
         given(restaurantService.getRestaurant(1004L)).willReturn(restaurant1);
         given(restaurantService.getRestaurant(2020L)).willReturn(restaurant2);

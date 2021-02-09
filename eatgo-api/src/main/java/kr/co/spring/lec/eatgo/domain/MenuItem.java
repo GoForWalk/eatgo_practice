@@ -1,12 +1,10 @@
 package kr.co.spring.lec.eatgo.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,7 +12,7 @@ import javax.persistence.Id;
 @Setter
 @Entity
 @Builder
-@RequiredArgsConstructor
+@ToString
 @Accessors(chain = true)
 public class MenuItem {
 
@@ -22,12 +20,14 @@ public class MenuItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
     private String name;
 
-    private Long restaurantId;
+//    @ManyToOne
+//    private Restaurant restaurant;
 
-//    public MenuItem(String name) {
-//        this.name = name;
-//    }
+    private long restaurantId;
+
+    @Transient // DB에 넣지 않는다~!!
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT) // Json 에서 default = false
+    private boolean destroy;
 }

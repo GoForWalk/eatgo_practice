@@ -1,8 +1,11 @@
 [
   {
-    "name":"Kimchi"
+    "id": 7,
+    "name":"coffee"
   },
   {
-    "name":"Gukbob"
+    "id": 9,
+    "name":"Kimchi",
+    "destroy": true
   }
 ]

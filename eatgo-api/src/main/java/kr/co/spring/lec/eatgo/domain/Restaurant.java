@@ -30,8 +30,8 @@ public class Restaurant {
 //    private String tagNames;
 
 
-//    @OneToMany
     @Transient
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     private List<MenuItem> menuItems;
 
     public String  getInformation() {
